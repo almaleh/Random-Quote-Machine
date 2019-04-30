@@ -1,28 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Provider, connect } from 'react-redux'
-import { createStore, combineReducers, applyMiddleware} from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 
 // Redux
-const ADD_QUOTE ='ADD_QUOTE'; 
-const quotesReducer = (state = [], action) => {
+const ADD_QUOTES = 'ADD_QUOTES';
+
+const defaultQuotes = [
+  { quote: "This is it", author: "no one"},
+  { quote: "It's absolute madness", author: "anonymous" },
+  { quote: "Whomever had been afflicted, must reconcile.", author: "James Jones" }, 
+  { quote: "A pity, he was a good man.", author: "Brendon Weasley" },
+  { quote: "It was a fool's errand", author: "Bartender" },
+  { quote: "A miserable affair, that was.", author: "Warden Dave"}
+]
+
+const quotesReducer = (state = defaultQuotes, action) => {
   switch (action.type) {
-    case ADD_QUOTE:
-      return [...state, action.quote]; 
-      default: 
-      return state; 
+    case ADD_QUOTES:
+      return [...state, action.quotes];
+    default:
+      return state;
   }
 }
 
-const addQuote = (quote) => {
+const addQuotes = (quotes) => {
   return {
-    type: ADD_QUOTE,
-    quote
+    type: ADD_QUOTES,
+    quotes
   }
 }
 
-const store = createStore(quotesReducer); 
+const store = createStore(quotesReducer);
 
 // React-Redux
 
@@ -32,55 +41,90 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submitNewQuote: (quote) => {
-      dispatch(addQuote(quote));
+    addQuotes: (quotes) => {
+      dispatch(addQuotes(quotes));
     }
   }
 }
 
 // React
 
-class Presentational extends React.Component {
+class QuoteComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <p id="text">{this.props.quote}</p>
+        <p id="author">{this.props.author}</p>
+      </div>
+    )
+  }
+}
+
+class Wrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: ""
+      currentQuote: {}
     }
-    this.submitQuote = this.submitQuote.bind(this); 
+
+    // bind stuff to appease the 'this' gods
+    this.addQuotes = this.addQuotes.bind(this);
+    this.newQuote = this.newQuote.bind(this);
+    this.fetchQuotes = this.fetchQuotes.bind(this); 
   }
 
-  submitQuote() {
-    this.props.submitNewQuote("This is a quote")
+  componentDidMount() {
+    this.newQuote(); 
+  }
+
+  fetchQuotes() {
+    // async call using middleware dispatch
+  }
+
+  newQuote() {
+    let quotes = this.props.quotes; 
+    let randomValue = Math.random() * quotes.length;
+    let randomIndex = Math.floor(randomValue); 
+    this.setState({
+      currentQuote: quotes[randomIndex]
+    }) 
+  }
+
+  addQuotes() {
+    this.props.addQuotes("This is a quote")
   }
 
   render() {
-    let quotes = this.props.quotes.map( (quote, index) => {
-      return (
-        <p key={index}>{quote}</p>
-      )
-      })
-    console.log(this.props.quotes)
-    return(
+    let randomQuote = this.state.currentQuote;
+    let quote = randomQuote.quote; 
+    let author = randomQuote.author; 
+    return (
       <div className="App">
-      <header className="App-header">
-        
-      </header>
-    </div>
+        <div id="quote-box" className="App-wrapper">
+          <QuoteComponent quote={quote} author={author} />
+          <button type="button" id="new-quote" onClick={this.newQuote} >New Quote</button>
+          <a href="twitter.com/intent/tweet" target="_blank">
+            <button type="button" id="tweet-quote">Tweet</button>
+          </a>
+
+        </div>
+      </div>
     )
   }
 }
 
 
 function App() {
-  return (        
+  return (
     <Provider store={store}>
-      <Container/>
+      <Container />
     </Provider>
   );
 }
 
-const Container = connect(mapStateToProps, mapDispatchToProps)(Presentational)
-
-
+const Container = connect(mapStateToProps, mapDispatchToProps)(Wrapper)
 
 export default App;
