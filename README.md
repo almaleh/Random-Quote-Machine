@@ -1,3 +1,5 @@
+My first React project. Don't have a good reason to use Redux here (barely any state), but I'm doing it anyway for practice. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
