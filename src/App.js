@@ -56,8 +56,8 @@ class QuoteComponent extends React.Component {
   render() {
     return (
       <div>
-        <p id="text">{this.props.quote}</p>
-        <p id="author">{this.props.author}</p>
+        <p id="text">❝ {this.props.quote}</p>
+        <p id="author">- {this.props.author}</p>
       </div>
     )
   }
@@ -103,13 +103,17 @@ class Wrapper extends React.Component {
     let author = randomQuote.author; 
     return (
       <div className="App">
-        <div id="quote-box" className="App-wrapper">
+        <div className="App-wrapper">
+        <div id="quote-box">
           <QuoteComponent quote={quote} author={author} />
-          <button type="button" id="new-quote" onClick={this.newQuote} >New Quote</button>
+          
+          <div id="buttons">
           <a href="twitter.com/intent/tweet" target="_blank">
-            <button type="button" id="tweet-quote">Tweet</button>
+            <button type="button" class="button" id="tweet-quote">Tweet</button>
           </a>
-
+          <button type="button" class="button" id="new-quote" onClick={this.newQuote} >New Quote</button>
+          </div>
+          </div>
         </div>
       </div>
     )

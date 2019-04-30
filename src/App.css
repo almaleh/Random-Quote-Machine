@@ -6,13 +6,51 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  font-family: Georgia, 'Times New Roman', Times, serif;
   color: white;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+#quote-box {
+  background-color: darkslategrey; 
+  border: 5px solid darkgray;
+  border-radius: 15px; 
+  min-width: 400px; 
+  padding: 40px;
+}
+
+#author {
+  font-style: italic; 
+  font-weight: bold; 
+  font-size: calc(1px + 2vmin);
+  text-align: right;  
+}
+
+#buttons {
+  margin: 0 auto; 
+  margin-top: 50px; 
+  width: 400px; 
+  display: flex; 
+  flex-flow: row nowrap; 
+  justify-content: space-between; 
+  align-items: flex-end;
+}
+
+.button {
+  color: darkslategrey; 
+  padding: 12px;  
+  font-size: 13pt; 
+  font-weight: bold; 
+  border-radius: 4px; 
+}
+
+.button:active {
+  background-color: cornsilk;
 }

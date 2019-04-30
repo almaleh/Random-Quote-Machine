@@ -12,6 +12,7 @@
             "runtimeArgs": [
                 "run-script",
                 "debug"
+                
             ],
             "port": 9229
         },
