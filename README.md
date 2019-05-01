@@ -2,6 +2,9 @@ My first React project. There's no good reason to use Redux here (barely any sta
 
 I'm keeping most of the code in one file to run it in CodePen. 
 
+CodePen link: 
+https://codepen.io/BeshehAlMaleh/pen/VNRdjY
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

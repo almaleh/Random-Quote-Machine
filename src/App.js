@@ -154,8 +154,8 @@ class Wrapper extends React.Component {
             <QuoteComponent quote={quote} author={author} />
 
             <div id="buttons">
-              <a href={tweet} target="_blank">
-                <button title="Tweet this quote" type="button" className="button" id="tweet-quote">
+              <a href={tweet} target="_blank" id="tweet-quote">
+                <button title="Tweet this quote" type="button" className="button">
                   <i className="fab fa-twitter"></i> Tweet
             </button>
               </a>
