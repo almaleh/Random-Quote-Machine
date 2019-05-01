@@ -1,4 +1,6 @@
-My first React project. Don't have a good reason to use Redux here (barely any state), but I'm doing it anyway for practice. 
+My first React project. There's no good reason to use Redux here (barely any state), but I'm doing it anyway for practice. 
+
+I'm keeping most of the code in one file to run it in CodePen. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

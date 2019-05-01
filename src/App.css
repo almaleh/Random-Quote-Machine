@@ -9,7 +9,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(20px + 1vmin);
   font-family: Georgia, 'Times New Roman', Times, serif;
   color: white;
 }
@@ -21,15 +21,20 @@
 #quote-box {
   background-color: darkslategrey; 
   border: 5px solid darkgray;
-  border-radius: 15px; 
+  border-radius: 6px; 
   min-width: 400px; 
+  max-width: 900px; 
+  min-height: 300px; 
   padding: 40px;
+  display: flex; 
+  flex-flow: column nowrap; 
+  justify-content: space-between;
 }
 
 #author {
   font-style: italic; 
   font-weight: bold; 
-  font-size: calc(1px + 2vmin);
+  font-size: calc(10px + 1vmin);
   text-align: right;  
 }
 
@@ -49,6 +54,10 @@
   font-size: 13pt; 
   font-weight: bold; 
   border-radius: 4px; 
+}
+
+.button:hover {
+  opacity: 0.9;
 }
 
 .button:active {
